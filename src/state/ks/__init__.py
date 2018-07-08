@@ -1,1 +1,1 @@
-from .get_candidates import get_kssos_dot_org_response
+from .get_candidates import get_kssos_dot_org_response, get_ks_candidates
