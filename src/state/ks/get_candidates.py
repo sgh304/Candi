@@ -1,6 +1,6 @@
+from bs4 import BeautifulSoup
+from requests import post
 from src.candidate import Candidate
-import requests
-import bs4
 
 def get_kssos_dot_org_response():
     '''Gets the HTML response from the candidate listing page on the KS Secretary of State's website.'''
@@ -10,14 +10,14 @@ def get_kssos_dot_org_response():
     # elecid can be set to different values. '25' is the ID for the 2018 Primaries
     # flag is necessary to get the listing page to load correctly
     data = {'elecid': '25', 'flag': 'yes'}
-    return requests.post(url = url, headers = headers, data = data)
+    return post(url = url, headers = headers, data = data)
 
 def get_ks_candidates():
     '''Parses the candidate listing page on the KS Secretary of State's website to construct a list of
     candidates using the standardized candi model.'''
     # Get table from the KS Secretary of State's website and parse it into a list of rows with stripped strings
     content = get_kssos_dot_org_response().content
-    soup = bs4.BeautifulSoup(content, 'html.parser')
+    soup = BeautifulSoup(content, 'html.parser')
     tds = soup.find_all('td')
     rows = [tds[i:i+25] for i in range(0, len(tds), 25)]
     cleaned_rows = [[col.getText().strip() for col in row] for row in rows]
@@ -64,5 +64,3 @@ def get_ks_candidates():
             work_phone = work_phone, cell_phone = cell_phone, email = email, website = website)
         candidates.append(candidate)
     return candidates
-
-get_ks_candidates()
