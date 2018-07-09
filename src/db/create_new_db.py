@@ -1,5 +1,4 @@
 # A script to create a new candidate database
-
 import pymongo
 from src import state
 
