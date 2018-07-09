@@ -36,6 +36,7 @@ def get_ks_candidates():
         first_name = get(col = 7)
         last_name = get(col = 9)
         # Office
+        state = 'KS'
         office = get(col = 1)
         district = get(col = 2, error = '0')
         position = get(col = 3, error = '0')
@@ -58,7 +59,7 @@ def get_ks_candidates():
         email = get(col = 20)
         website = get(col = 21)
         # Construct Candidate
-        candidate = Candidate(full_name = full_name, first_name = first_name, last_name = last_name,
+        candidate = Candidate(full_name = full_name, first_name = first_name, last_name = last_name, state = state,
             office = office, district = district, position = position, division = division, date_filed = date_filed,
             party = party, home_address = home_address, mailing_address = mailing_address, home_phone = home_phone,
             work_phone = work_phone, cell_phone = cell_phone, email = email, website = website)

@@ -1,23 +1,23 @@
-from src.state.ks import get_kssos_dot_org_response, get_ks_candidates
 import bs4
+from src.state import ks
 
 def test_kssos_dot_org_response_url():
     '''To verify that the kssos.org candidate response is from the correct url. It has a nasty habit of
     redirecting to the kssos.org homepage if the request is off.'''
-    url = get_kssos_dot_org_response().url
+    url = ks.get_kssos_dot_org_response().url
     assert(url == 'http://www.kssos.org/elections/elections_upcoming_candidate_display.asp')
 
 def test_kssos_dot_org_response_table():
     '''To verify that the kssos.org candidate response has a table. If the request is off, the
     page will render without any actual candidates.'''
-    content = get_kssos_dot_org_response().content
+    content = ks.get_kssos_dot_org_response().content
     soup = bs4.BeautifulSoup(content, 'html.parser')
     tables = soup.find_all('table')
     assert(len(tables) == 1)
 
 def test_get_ks_candidates():
     '''To verify that Candidates are properly constructed from the kssos.org website's table.'''
-    candidates = get_ks_candidates()
+    candidates = ks.get_ks_candidates()
     # Verify standard candidate
     vernon_j_fields = candidates[4]
     assert(vernon_j_fields.full_name == 'Vernon J. Fields')
