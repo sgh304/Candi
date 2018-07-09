@@ -22,10 +22,11 @@ def json_candidates(cursor):
         json.append(candidate)
     return json
 
-# KS candidates
-@app.route('/ks/')
-def ks():
-    return flask.jsonify(json_candidates(candidates.find({'state': 'KS'})))
+# State candidates
+@app.route('/<state>/')
+def state(state):
+    state = state.upper()
+    return flask.jsonify(json_candidates(candidates.find({'state': state})))
 
 # Run
 if __name__ == '__main__':
