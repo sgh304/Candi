@@ -58,7 +58,7 @@ const updateSelects = () => {
 
 const updateOfficeSelect = () => {
     state = $('select[name="state"]').val();
-    $.get('/api/office/', {state: state}, (offices) => {
+    $.get('api/office/', {state: state}, (offices) => {
         $('select[name="office"]').children().remove();
         $('select[name="office"]').append($('<option>', {value: 'ALL'}).text('All'));
         offices.forEach((office) => {
@@ -69,7 +69,7 @@ const updateOfficeSelect = () => {
 
 const updatePartySelect = () => {
     state = $('select[name="state"]').val();
-    $.get('/api/party/', {state: state}, (parties) => {
+    $.get('api/party/', {state: state}, (parties) => {
         $('select[name="party"]').children().remove();
         $('select[name="party"]').append($('<option>', {value: 'ALL'}).text('All'));
         parties.forEach((party) => {
@@ -83,7 +83,7 @@ const updateData = () => {
     office = $('select[name="office"]').val();
     party = $('select[name="party"]').val();
 
-    $.get('/api/candidate/', {state: state, office: office, party: party}, (data) => {
+    $.get('api/candidate/', {state: state, office: office, party: party}, (data) => {
         $('#data').text(JSON.stringify(data));
     })
 }
