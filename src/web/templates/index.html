@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <title>
+            Candi API
+        </title>
+    </head>
+    <body>
+        <div id = 'header'>
+            Welcome to the Candi API explorer.
+        </div>
+        <div id = 'database-info'>
+            Currently running off a database fetched on 7/12/18.
+        </div>
+        <div id = 'explorer'>
+            <form id = 'explorer--form' onsubmit = 'updateData()'>
+                State:
+                <select name = 'state' form = 'explorer--form' onchange = 'updateSelects()'>
+                    <option value = 'ALL'>All</option>
+                    <option value = 'KS'>KS</option>
+                    <option value = 'MO'>MO</option>
+                </select>
+                Office:
+                <select name = 'office' form = 'explorer--form'>
+                    <option value = 'ALL'>All</option>
+                </select>
+                Party:
+                <select name = 'party' form = 'explorer--form'>
+                    <option value = 'ALL'>All</option>
+                </select>
+                <input type = 'submit'>
+            </form>
+        </div>
+        <div id = 'data--header'>
+            Response:
+        </div>
+        <div id = 'data'>
+
+        </div>
+    </body>
+</html>
+
+<script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+
+<script>
+
+$('#explorer--form').submit((e) => {
+    e.preventDefault();
+})
+
+const updateSelects = () => {
+    updateOfficeSelect();
+    updatePartySelect();
+}
+
+const updateOfficeSelect = () => {
+    state = $('select[name="state"]').val();
+    $.get('/api/office/', {state: state}, (offices) => {
+        $('select[name="office"]').children().remove();
+        $('select[name="office"]').append($('<option>', {value: 'ALL'}).text('All'));
+        offices.forEach((office) => {
+            $('select[name="office"]').append($('<option>', {value: office}).text(office));
+        })
+    })
+}
+
+const updatePartySelect = () => {
+    state = $('select[name="state"]').val();
+    $.get('/api/party/', {state: state}, (parties) => {
+        $('select[name="party"]').children().remove();
+        $('select[name="party"]').append($('<option>', {value: 'ALL'}).text('All'));
+        parties.forEach((party) => {
+            $('select[name="party"]').append($('<option>', {value: party}).text(party));
+        })
+    })
+}
+
+const updateData = () => {
+    state = $('select[name="state"]').val();
+    office = $('select[name="office"]').val();
+    party = $('select[name="party"]').val();
+
+    $.get('/api/candidate/', {state: state, office: office, party: party}, (data) => {
+        $('#data').text(JSON.stringify(data));
+    })
+}
+
+// Initialize
+updateOfficeSelect();
+updatePartySelect();
+</script>
