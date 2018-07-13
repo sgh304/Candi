@@ -7,8 +7,8 @@ name = "pypi"
 requests = "*"
 "bs4" = "*"
 flask = "*"
-tabula = "*"
 pymongo = "*"
+tabula-py = "*"
 
 [dev-packages]
 pytest = "*"

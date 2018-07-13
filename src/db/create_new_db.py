@@ -14,3 +14,4 @@ def add(get_candidates):
     for candidate in get_candidates():
         candidates.insert_one(candidate.json)
 add(get_candidates = state.get_ks_candidates)
+add(get_candidates = state.get_ia_candidates)
