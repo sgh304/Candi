@@ -2,6 +2,9 @@ from bs4 import BeautifulSoup
 from requests import post
 from src.candidate import Candidate
 
+standardized_offices = {'Governor / Lt. Governor': 'Governor', 'Kansas Senate': 'State Senator', 'Kansas House of Representatives': 'State Representative',
+                        'United States House of Representatives': 'United States Representative'}
+
 def get_kssos_dot_org_response():
     '''Gets the HTML response from the candidate listing page on the KS Secretary of State's website.'''
     url = 'http://www.kssos.org/elections/elections_upcoming_candidate_display.asp'
@@ -38,6 +41,8 @@ def get_ks_candidates():
         # Office
         state = 'KS'
         office = get(col = 1)
+        if office in standardized_offices:
+            office = standardized_offices[office]
         district = get(col = 2, error = '0')
         position = get(col = 3, error = '0')
         division = get(col = 4, error = '0')

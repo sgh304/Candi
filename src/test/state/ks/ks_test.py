@@ -23,7 +23,8 @@ def test_get_ks_candidates():
     assert(vernon_j_fields.full_name == 'Vernon J. Fields')
     assert(vernon_j_fields.first_name == 'Vernon')
     assert(vernon_j_fields.last_name == 'Fields')
-    assert(vernon_j_fields.office == 'United States House of Representatives')
+    # Verify a standardized office
+    assert(vernon_j_fields.office == 'United States Representative')
     assert(vernon_j_fields.district == '2')
     assert(vernon_j_fields.date_filed == '2/14/2017')
     assert(vernon_j_fields.party == 'Republican')
