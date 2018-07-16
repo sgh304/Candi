@@ -52,17 +52,17 @@ body {
 }
 
 .extra-small-text {
-  font-size: 12px;
+  font-size: 18px;
 }
 
 .small-text {
-    font-size: 18px;
+    font-size: 27px;
 }
 
 .med-text {
-    font-size: 24px;
+    font-size: 36px;
 }
 
 .large-text {
-    font-size: 32px;
+    font-size: 48px;
 }
