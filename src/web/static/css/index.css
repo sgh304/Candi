@@ -1,0 +1,32 @@
+#header {
+    padding-top: 100px;
+    padding-bottom: 50px;
+}
+
+#description {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#description p {
+    padding-bottom: 25px;
+}
+
+#navigation {
+    margin-top: 50px;
+}
+
+.navigation--column {
+    display: inline-block;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+#navigation a {
+    text-decoration: none;
+}
+
+#navigation a:visited {
+    text-decoration: none;
+}

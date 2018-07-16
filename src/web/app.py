@@ -29,9 +29,15 @@ def get_query():
 # Routes
 @app.route('/')
 def index():
-    '''API explorer'''
+    '''Index'''
     return flask.render_template('index.html')
 
+@app.route('/explorer')
+def explorer():
+    '''API explorer'''
+    return flask.render_template('explorer.html')
+
+# API
 @app.route('/api/candidate/')
 def get_candidates():
     '''Return all candidates for a given query'''

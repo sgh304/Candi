@@ -1,94 +1,33 @@
 <!DOCTYPE html>
 <html lang='en'>
     <head>
-        <title>
-            Candi API
-        </title>
+        <title>Candi API</title>
+        <link rel = 'stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:700'>
+        <link rel = 'stylesheet' type = 'text/css' href = 'static/css/common.css'>
+        <link rel = 'stylesheet' type = 'text/css' href = 'static/css/index.css'>
+        <script src = 'https://code.jquery.com/jquery-3.3.1.js' integrity = 'sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=' crossorigin = 'anonymous'></script>
     </head>
     <body>
-        <div id = 'header'>
-            Welcome to the Candi API explorer.
+        <div id = 'header' class = 'centered-text dark-blue-text'>
+            <div id = 'header--welcome' class = 'large-text'>
+                Welcome to <span class = 'light-blue-text'>Candi</span>
+            </div>
+            <div id = 'header--tagline' class = 'small-text'>
+                An open-source API for accessing data on US political candidates
+            </div>
         </div>
-        <div id = 'database-info'>
-            Currently running off a database fetched on 7/13/18.
+        <div id = 'description' class = 'centered-text dark-blue-text extra-small-text'>
+            <p>Where do you find information about candidates?</p>
+            <p>Everyone has a different answer, but they all have their pitfalls. Whether you're sifting through hundreds of useless links on your Secretary of State's website or trying to figure out whether an external report has been updated at all in the last six months, it's probably as clear to you as it is to us: there should be an easier way.</p>
+            <p>We at Candi aim to provide a common language for interacting with official candidate registration records. Our open-source API gives developers a standardized, constantly-updating database of political candidates that does not rely on external organizations, facilitating the rapid deployment of applications that keep our democracy running.</p>
         </div>
-        <div id = 'explorer'>
-            <form id = 'explorer--form' onsubmit = 'updateData()'>
-                State:
-                <select name = 'state' form = 'explorer--form' onchange = 'updateSelects()'>
-                    <option value = 'ALL'>All</option>
-                    <option value = 'KS'>KS</option>
-                    <option value = 'IA'>IA</option>
-                </select>
-                Office:
-                <select name = 'office' form = 'explorer--form'>
-                    <option value = 'ALL'>All</option>
-                </select>
-                Party:
-                <select name = 'party' form = 'explorer--form'>
-                    <option value = 'ALL'>All</option>
-                </select>
-                <input type = 'submit'>
-            </form>
-        </div>
-        <div id = 'data--header'>
-            Response:
-        </div>
-        <div id = 'data'>
-
+        <div id = 'navigation' class = 'centered-text dark-blue-text small-text'>
+            <div id = 'navigation--explorer' class = 'navigation--column'>
+                <a href = 'explorer' class = 'light-blue-text'>Explore the Candi API</a>
+            </div>
+            <div id = 'navigation--github' class = 'navigation--column'>
+                <a href = '' class = 'light-blue-text'>Contribute on GitHub</a>
+            </div>
         </div>
     </body>
 </html>
-
-<script
-  src="https://code.jquery.com/jquery-3.3.1.js"
-  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-  crossorigin="anonymous"></script>
-
-<script>
-
-$('#explorer--form').submit((e) => {
-    e.preventDefault();
-})
-
-const updateSelects = () => {
-    updateOfficeSelect();
-    updatePartySelect();
-}
-
-const updateOfficeSelect = () => {
-    state = $('select[name="state"]').val();
-    $.get('api/office/', {state: state}, (offices) => {
-        $('select[name="office"]').children().remove();
-        $('select[name="office"]').append($('<option>', {value: 'ALL'}).text('All'));
-        offices.forEach((office) => {
-            $('select[name="office"]').append($('<option>', {value: office}).text(office));
-        })
-    })
-}
-
-const updatePartySelect = () => {
-    state = $('select[name="state"]').val();
-    $.get('api/party/', {state: state}, (parties) => {
-        $('select[name="party"]').children().remove();
-        $('select[name="party"]').append($('<option>', {value: 'ALL'}).text('All'));
-        parties.forEach((party) => {
-            $('select[name="party"]').append($('<option>', {value: party}).text(party));
-        })
-    })
-}
-
-const updateData = () => {
-    state = $('select[name="state"]').val();
-    office = $('select[name="office"]').val();
-    party = $('select[name="party"]').val();
-
-    $.get('api/candidate/', {state: state, office: office, party: party}, (data) => {
-        $('#data').text(JSON.stringify(data));
-    })
-}
-
-// Initialize
-updateOfficeSelect();
-updatePartySelect();
-</script>

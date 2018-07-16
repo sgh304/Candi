@@ -1,0 +1,25 @@
+#header {
+    padding-top: 100px;
+    padding-bottom: 50px;
+}
+
+#explorer {
+    background-color: #9CC0DB;
+    height: 100px;
+}
+
+#explorer--form {
+    line-height: 100px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.explorer--form--cell {
+    display: inline-block;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+#response--data {
+    font-family: 'Roboto Mono', monospace;
+}

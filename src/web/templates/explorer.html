@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <title>Candi API Explorer</title>
+        <link rel = 'stylesheet' href='https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto:700'>
+        <link rel = 'stylesheet' type = 'text/css' href = 'static/css/common.css'>
+        <link rel = 'stylesheet' type = 'text/css' href = 'static/css/explorer.css'>
+        <script src = 'https://code.jquery.com/jquery-3.3.1.js' integrity = 'sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=' crossorigin = 'anonymous'></script>
+        <script src = 'static/script/explorer.js'></script>
+    </head>
+    <body>
+        <div id = 'header' class = 'centered-text dark-blue-text'>
+            <div id = 'header--welcome' class = 'large-text'>
+                <span class = 'light-blue-text'>Candi</span> API Explorer
+            </div>
+            <div id = 'header--instructions' class = 'small-text'>
+                Construct a query and click the submit button to make a request
+            </div>
+        </div>
+        <div id = 'explorer'>
+            <form id = 'explorer--form' onsubmit = 'run()'>
+                <div class = 'explorer--form--cell'>
+                    State:
+                    <select name = 'state' form = 'explorer--form' onchange = 'updateSelects()'>
+                        <option value = 'ALL'>All</option>
+                        <option value = 'KS'>KS</option>
+                        <option value = 'IA'>IA</option>
+                    </select>
+                </div>
+                <div class = 'explorer--form--cell'>
+                    Office:
+                    <select name = 'office' form = 'explorer--form'>
+                        <option value = 'ALL'>All</option>
+                    </select>
+                </div>
+                <div class = 'explorer--form--cell'>
+                    Party:
+                    <select name = 'party' form = 'explorer--form'>
+                        <option value = 'ALL'>All</option>
+                    </select>
+                </div>
+                <div class = 'explorer--form--cell'>
+                    <input type = 'submit'>
+                </div>
+            </form>
+        </div>
+        <div id = 'response'>
+            <div id = 'response--header' class = 'centered-text dark-blue-background white-text'>
+                <div id = 'response--url' class = 'med-text'>
+                    URL
+                </div>
+                <div id = 'response--info' class = 'small-text'>
+                    Database fetched: 7/13/18, Response generated: 7/16/18
+                </div>
+            </div>
+            <div id = 'response--data' class = 'white-background dark-blue-text'>
+
+            </div>
+        </div>
+    </body>
+</html>
+
+<script>
+// Hide response
+$('#response').hide();
+// Prevent page refresh on form submit
+$('#explorer--form').submit((e) => {
+    e.preventDefault();
+})
+//Initialize dropdowns
+updateOfficeSelect();
+updatePartySelect();
+</script>
