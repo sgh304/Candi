@@ -36,7 +36,7 @@ const run = () => {
 
     $.get('api/candidate/', {state: state, office: office, party: party}, function(data) {
         $('#response').show();
-        $('#response--url').text(window.location.origin + '/' + this.url);
+        $('#response--url').text(window.location.origin + '/candi/' + this.url);
         $('#response--data').text(JSON.stringify(data, null, 2));
     })
 }
