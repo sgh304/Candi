@@ -2,6 +2,7 @@
 An open-source API for accessing information about US political candidates.
 
 ## What is Candi?
+
 Where do you find information about US election candidates?
 
 Whatever your answer is, chances are it's less than ideal. Each state has an official register on their Secretary of State's website, but they're all obscured by their variable formatting, hidden behind dozens of useless links. External websites can share those same navigational difficulties, and, even worse, may be only sporadically updated and even run the risk of bias.
