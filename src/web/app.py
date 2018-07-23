@@ -32,7 +32,7 @@ def index():
     '''Index'''
     return flask.render_template('index.html')
 
-@app.route('/explorer')
+@app.route('/explorer/')
 def explorer():
     '''API explorer'''
     return flask.render_template('explorer.html')
