@@ -1,3 +1,6 @@
+// The base /candi/ URL
+const url = window.location.href.replace('explorer/', '');
+
 const updateSelects = () => {
     // Updates all selection dropdowns for the current state
     updateOfficeSelect();
@@ -7,7 +10,7 @@ const updateSelects = () => {
 const updateOfficeSelect = () => {
     // Updates the office selection dropdown for the current state
     state = $('select[name="state"]').val();
-    $.get('../api/office/', {state: state}, (offices) => {
+    $.get(url + 'api/office/', {state: state}, (offices) => {
         $('select[name="office"]').children().remove();
         $('select[name="office"]').append($('<option>', {value: 'ALL'}).text('All'));
         offices.forEach((office) => {
@@ -19,7 +22,7 @@ const updateOfficeSelect = () => {
 const updatePartySelect = () => {
     // Updates the party selection dropdown for the current state
     state = $('select[name="state"]').val();
-    $.get('../api/party/', {state: state}, (parties) => {
+    $.get(url + 'api/party/', {state: state}, (parties) => {
         $('select[name="party"]').children().remove();
         $('select[name="party"]').append($('<option>', {value: 'ALL'}).text('All'));
         parties.forEach((party) => {
@@ -34,9 +37,9 @@ const run = () => {
     office = $('select[name="office"]').val();
     party = $('select[name="party"]').val();
 
-    $.get('../api/candidate/', {state: state, office: office, party: party}, function(data) {
+    $.get(url + 'api/candidate/', {state: state, office: office, party: party}, function(data) {
         $('#response').show();
-        $('#response--url').text(window.location.href.replace('explorer/', '') + this.url.replace('../', ''));
+        $('#response--url').text(this.url);
         $('#response--data').text(JSON.stringify(data, null, 2));
     })
 }
