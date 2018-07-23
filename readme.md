@@ -1,5 +1,5 @@
 # Candi
-An open-source API for accessing information about US political candidates.
+An open-source API for accessing information about US political candidates
 
 ## What is Candi?
 
