@@ -7,7 +7,7 @@ app = flask.Flask(__name__)
 # Open MongoDB connection
 mongo_client = pymongo.MongoClient()
 candi = mongo_client.candi
-candidates = candi.candidates
+primary_2018 = candi.primary_2018
 
 # Helpers
 def json_candidates(cursor):
@@ -41,17 +41,17 @@ def explorer():
 @app.route('/api/candidate/')
 def get_candidates():
     '''Return all candidates for a given query'''
-    return flask.jsonify(json_candidates(candidates.find(get_query())))
+    return flask.jsonify(json_candidates(primary_2018.find(get_query())))
 
 @app.route('/api/office/')
 def get_offices():
     '''Returns all offices for a given query'''
-    return flask.jsonify(candidates.distinct('office', query = get_query()))
+    return flask.jsonify(primary_2018.distinct('office', query = get_query()))
 
 @app.route('/api/party/')
 def get_parties():
     '''Returns all parties for a given query'''
-    return flask.jsonify(candidates.distinct('party', query = get_query()))
+    return flask.jsonify(primary_2018.distinct('party', query = get_query()))
 
 # Run
 if __name__ == '__main__':
