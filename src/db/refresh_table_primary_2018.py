@@ -3,11 +3,10 @@ import pymongo
 from src import state
 # Open MongoDB connection
 mongo_client = pymongo.MongoClient()
-# Drop old database
-mongo_client.drop_database('candi')
-# Create new database
 candi = mongo_client.candi
 primary_2018 = candi.primary_2018
+# Empty table
+primary_2018.remove({})
 # Add candidates to database
 def add(get_candidates):
     for candidate in get_candidates():
