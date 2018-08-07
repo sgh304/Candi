@@ -67,7 +67,7 @@ def parse_sos_dot_iowa_dot_gov_csv():
                                         email = email))
     return candidates
 
-def get_ia_candidates():
+def get_ia_candidates_primary_2018():
     '''Fetches candidate pdf from the IA Secretary of State's website and parses that
     into a list of candi candidates.'''
     get_sos_dot_iowa_dot_gov_pdf()

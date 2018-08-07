@@ -15,7 +15,7 @@ def get_kssos_dot_org_response():
     data = {'elecid': '25', 'flag': 'yes'}
     return post(url = url, headers = headers, data = data)
 
-def get_ks_candidates():
+def get_ks_candidates_primary_2018():
     '''Parses the candidate listing page on the KS Secretary of State's website to construct a list of
     candidates using the standardized candi model.'''
     # Get table from the KS Secretary of State's website and parse it into a list of rows with stripped strings
