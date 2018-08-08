@@ -1,4 +1,5 @@
 import bs4
+import pytest
 from src.state import ks
 
 def test_kssos_dot_org_response_url():
@@ -15,9 +16,10 @@ def test_kssos_dot_org_response_table():
     tables = soup.find_all('table')
     assert(len(tables) == 1)
 
-def test_get_ks_candidates():
+@pytest.mark.skip(reason = 'Primary 2018')
+def test_get_ks_candidates_primary_2018():
     '''To verify that Candidates are properly constructed from the kssos.org website's table.'''
-    candidates = ks.get_ks_candidates()
+    candidates = ks.get_ks_candidates_primary_2018()
     # Verify standard candidate
     vernon_j_fields = candidates[4]
     assert(vernon_j_fields.full_name == 'Vernon J. Fields')

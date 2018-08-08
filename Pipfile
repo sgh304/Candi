@@ -4,9 +4,9 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+flask = "*"
 requests = "*"
 "bs4" = "*"
-flask = "*"
 pymongo = "*"
 tabula-py = "*"
 

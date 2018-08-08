@@ -1,7 +1,9 @@
 from os.path import isfile
+import pytest
 from src.state import ia
 
-def test_pase_ia_sos_csv():
+@pytest.mark.skip(reason = 'Primary 2018')
+def test_pase_ia_sos_csv_primary_2018():
     '''To verify that candi candidates can be constructed from the IA Secretary of State website'''
     # Download pdf from the IA Secretary of State website
     ia.get_sos_dot_iowa_dot_gov_pdf()
