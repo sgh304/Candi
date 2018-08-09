@@ -5,13 +5,13 @@ from src.state import ks
 def test_kssos_dot_org_response_url():
     '''To verify that the kssos.org candidate response is from the correct url. It has a nasty habit of
     redirecting to the kssos.org homepage if the request is off.'''
-    url = ks.get_kssos_dot_org_response().url
+    url = ks.get_kssos_dot_org_response(elecid = '26').url
     assert(url == 'http://www.kssos.org/elections/elections_upcoming_candidate_display.asp')
 
 def test_kssos_dot_org_response_table():
     '''To verify that the kssos.org candidate response has a table. If the request is off, the
     page will render without any actual candidates.'''
-    content = ks.get_kssos_dot_org_response().content
+    content = ks.get_kssos_dot_org_response(elecid = '26').content
     soup = bs4.BeautifulSoup(content, 'html.parser')
     tables = soup.find_all('table')
     assert(len(tables) == 1)
@@ -52,3 +52,8 @@ def test_get_ks_candidates_primary_2018():
     assert(roger_marshall.cell_phone == 'N/A')
     assert(roger_marshall.email == 'N/A')
     assert(roger_marshall.website == 'N/A')
+
+def test_get_ks_candidates_general_2018():
+    candidates = ks.get_ks_candidates_general_2018()
+    rob_hodgkinson = candidates[4]
+    assert(rob_hodgkinson.full_name == 'Rob Hodgkinson')
